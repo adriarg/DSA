@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <!-- Título actualizado -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculadora by Adrià R"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"
+        android:textStyle="bold" />
+
+    <!-- TextView para mostrar el resultado -->
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:textSize="32sp"
+        android:padding="16dp"
+        android:background="@android:color/darker_gray"
+        android:text="0" />
+
+    <!-- Switch para seleccionar entre grados y radianes con textos a los lados -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="10dp">
+
+        <!-- Texto para Radianes -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Radians"
+            android:textSize="16sp"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Switch SIN texto interno -->
+        <Switch
+            android:id="@+id/radDegSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+                   android:checked="true"
+        android:layout_gravity="center" />
+
+        <!-- Texto para Grados -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Degrees"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- Layout para los botones de la calculadora -->
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:rowCount="5"
+        android:layout_marginTop="16dp">
+
+        <!-- Botones de la calculadora con color verde -->
+        <Button
+            android:id="@+id/button7"
+            android:text="7"
+            android:backgroundTint="#4CAF50" />
+        <Button
+            android:id="@+id/button8"
+            android:text="8"
+            android:backgroundTint="#4CAF50" />
+        <Button
+            android:id="@+id/button9"
+            android:text="9"
+            android:backgroundTint="#4CAF50" />
+        <Button
+            android:id="@+id/buttonAdd"
+            android:text="+"
+            android:backgroundTint="#4CAF50" />
+
+        <Button
+            android:id="@+id/button4"
+            android:text="4"
+            android:backgroundTint="#4CAF50" />
+        <Button
+            android:id="@+id/button5"
+            android:text="5"
+            android:backgroundTint="#4CAF50" />
+        <Button
+            android:id="@+id/button6"
+            android:text="6"
+            android:backgroundTint="#4CAF50" />
+        <Button
+            android:id="@+id/buttonSubtract"
+            android:text="-"
+            android:backgroundTint="#4CAF50" />
+
+        <Button
+            android:id="@+id/button1"
+            android:text="1"
+            android:backgroundTint="#4CAF50" />
+        <Button
+            android:id="@+id/button2"
+            android:text="2"
+            android:backgroundTint="#4CAF50" />
+        <Button
+            android:id="@+id/button3"
+            android:text="3"
+            android:backgroundTint="#4CAF50" />
+        <Button
+            android:id="@+id/buttonMultiply"
+            android:text="*"
+            android:backgroundTint="#4CAF50" />
+
+        <Button
+            android:id="@+id/button0"
+            android:text="0"
+            android:backgroundTint="#4CAF50" />
+        <Button
+            android:id="@+id/buttonClear"
+            android:text="C"
+            android:backgroundTint="#4CAF50" />
+        <Button
+            android:id="@+id/buttonEquals"
+            android:text="="
+            android:backgroundTint="#4CAF50" />
+        <Button
+            android:id="@+id/buttonDivide"
+            android:text="/"
+            android:backgroundTint="#4CAF50" />
+
+        <!-- Botones trigonométricos -->
+        <Button
+            android:id="@+id/buttonSin"
+            android:text="sin"
+            android:backgroundTint="#4CAF50" />
+        <Button
+            android:id="@+id/buttonCos"
+            android:text="cos"
+            android:backgroundTint="#4CAF50" />
+        <Button
+            android:id="@+id/buttonTan"
+            android:text="tan"
+            android:backgroundTint="#4CAF50" />
+    </GridLayout>
+</LinearLayout>
