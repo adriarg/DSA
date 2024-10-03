@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Repos Viewer</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">GitHub Repositories Viewer</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form id="github-form">
+                    <div class="form-group">
+                        <label for="username">Enter GitHub Username:</label>
+                        <input type="text" id="username" class="form-control" placeholder="GitHub Username" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Get Repositories</button>
+                </form>
+                <div id="repo-list" class="mt-4">
+                    <!-- Aquí mostramos los repos -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script para manejar la lógica -->
+    <script>
+        $(document).ready(function() {
+            $("#github-form").submit(function(event) {
+                event.preventDefault(); // Evitar que el formulario haga un submit tradicional
+
+                // Limpiar resultados anteriores
+                $('#repo-list').empty();
+
+                let username = $("#username").val().trim(); // Capturar el valor del input
+
+                if (username === "") {
+                    $('#repo-list').append('<p class="text-center text-danger">Please enter a GitHub username.</p>');
+                    return; // Salir si no hay un nombre de usuario
+                }
+
+                // Mostrar un mensaje de carga mientras se obtiene la información
+                $('#repo-list').append('<p class="text-center">Loading repositories...</p>');
+
+                // URL de la API de GitHub para los repositorios del usuario
+                let apiURL = `https://api.github.com/users/${username}/repos`;
+
+                // Hacer una petición GET a la API de GitHub
+                $.get(apiURL, function(repos) {
+                    $('#repo-list').empty(); // Limpiar el mensaje de carga
+
+                    if (repos.length > 0) {
+                        // Crear tabla
+                        let table = `<table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Description</th>
+                                                <th>Stars</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>`;
+
+                        // Iterar sobre los repositorios
+                        repos.forEach(repo => {
+                            table += `<tr>
+                                        <td><a href="${repo.html_url}" target="_blank">${repo.name}</a></td>
+                                        <td>${repo.description || 'No description'}</td>
+                                        <td>${repo.stargazers_count}</td>
+                                      </tr>`;
+                        });
+
+                        table += `</tbody></table>`;
+
+                        // Añadir la tabla al DOM
+                        $('#repo-list').append(table);
+                    } else {
+                        $('#repo-list').append('<p class="text-center">No repositories found for this user.</p>');
+                    }
+                }).fail(function() {
+                    $('#repo-list').empty();
+                    $('#repo-list').append('<p class="text-center text-danger">User not found or there was an error fetching the data.</p>');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
